@@ -15,3 +15,244 @@
   <script src="main.js"></script>
 </body>
 </html>
+
+.career-program .paragraphs-item-programas-carreras {
+  align-self: center;
+  box-shadow: 2px 2px 10px $shadow;
+  height: auto;
+  justify-self: center;
+  width: 100%;
+  height: 100%;
+
+  @media (min-width: 600px) {
+    width: 60%;
+  }
+  @media (min-width: $breakpoint-md) {
+    width: 100%;
+  }
+
+  h4{
+    text-align: center;
+  }
+  ul {
+    margin: 0 15px;
+    padding: 20px 25px 0 35px;
+  }
+}
+
+.cta-register-detail strong {
+  color: black;
+}
+
+.panel-cetav-carreras {
+  h2,
+  h3,
+  h4 {
+    color: black;
+    font-family: $font-fam;
+    margin: 0;
+    padding-top: 25px;
+
+    @media (min-width: $breakpoint-md) {
+      padding-top: 67px;
+    }
+  }
+  p {
+    color: black;
+    font-size: $text-base;
+    font-weight: 100;
+    margin: 0;
+    padding-top: 15px;
+
+    @media (min-width: $breakpoint-md) {
+      padding-top: 25px;
+    }
+  }
+  .call-out-text {
+    font-size: $text-base;
+  }
+  .career-program {
+    margin: 50px auto 0 auto;
+    max-width: 80%;
+    padding-bottom: 10px;
+  }
+  .grid-width {
+    @media (min-width: $breakpoint-xl) {
+      max-width: 1400px;
+    }
+  }
+  .pane-title {
+    display: none;
+  }
+  .section-intro,
+  .section-wide {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+  .slab-blue {
+    background-color: $white;
+    color: black;
+  }
+  .subtitle-career {
+    color: black;
+    font-size: $text-h3;
+  }
+}
+
+.paragraphs-items-field-programa-carreras {
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: 100%;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: 50% 50%;
+  }
+  @media (min-width: $breakpoint-lg) {
+    grid-gap: 35px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.paragraphs-item-programas-carreras {
+  p {
+    font-weight: 500;
+    padding-left: 25px;
+    padding-top: 15px !important; // reescribo los del plan de estudios
+  }
+  li {
+    list-style-type: disc;
+  }
+}
+
+.line-grid {
+  -webkit-column-count: 1;
+  column-count: 1;
+}
+
+.pane-node-field-cuerpo-skills-carreras {
+  width: 100%;
+}
+
+.pane-node-field-skills-carrera {
+  h4 {
+    padding-top: 0;
+  }
+  li {
+    color: black;
+  }
+}
+
+.pane-node-field-titulo-estudiar-carrera h4 {
+  font-size: $text-h3;
+}
+
+.pane-node-field-titulo-skills-carreras  {
+  margin-bottom: 0;
+
+  h4 {
+    color: black;
+  }
+}
+
+.saber-mas {
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 85px;
+
+  a {
+    color: black;
+    font-weight: bold;
+    text-decoration: underline;
+
+    &:hover {
+      color: #f19130;
+      font-weight: bold;
+    }
+  }
+  h3 {
+    font-size: $text-h4;
+    padding-top: 15px;
+  }
+  p {
+    padding: 15px;
+  }
+}
+
+.split-list {
+  display: grid;
+  grid-template-areas:
+  "title title"
+  "left left"
+  "right right";
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto auto;
+  position: relative;
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-areas:
+    "title title"
+    "left right";
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
+  }
+
+  h4{
+    font-size: $text-base;
+    font-weight: bold;
+    grid-area: title;
+    padding-bottom: 5px;
+    position: absolute;
+    width: 100%;
+
+    @media (min-width: $breakpoint-md) {
+      width: 40%;
+    }
+  }
+  ul {
+    grid-area: left;
+    margin-bottom: 0;
+    padding-top: 30px;
+
+    @media (min-width: $breakpoint-lg) {
+      padding-left: 25px;
+    }
+
+    li {
+      color: black;
+      font-weight: 100;
+
+      &:before {
+        color: black;
+      }
+    }
+  }
+  ul + ul {
+    grid-area: right;
+    padding-left: 0;
+    padding-top: 0;
+
+    @media (min-width: $breakpoint-lg) {
+      padding-top: 30px;
+    }
+  }
+}
+
+.title-skills-3d {
+  border-bottom: 2px solid $color-carreer_animacion;
+}
+
+.title-skills-post {
+  border-bottom: 2px solid $color-carreer_post;
+}
+
+.title-skills-dic {
+  border-bottom: 2px solid $color-carreer_dic;
+}
+
+.title-skills-web {
+  border-bottom: 2px solid $color-carreer_web;
+}
+
