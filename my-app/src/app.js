@@ -14,17 +14,23 @@ class App extends React.Component {
 	changeFavorite(index) {
 		this.setState(() => {
 			this.state.DATA[index].favorite = !this.state.DATA[index].favorite
+			console.log(this.state.DATA);
 		});
-		console.log(this.state.DATA);
 	}
 
 	btnAction() {
-		this.setState(state => ({
-			view: !this.state.view
-		}));
+		this.setState(state => (
+			this.state.view = !this.state.view
+		));
+		this.render();
+	}
+
+	emptyData() {
+		this.setState({DATA: []});
 	}
 
 	newEpisode(myObject, element, index) {
+		this.emptyData.bind(this);
 		myObject = {id: index, favorite: false, img: element.image.medium, title: element.name, text: element.summary};
 		this.state.DATA.push(myObject);
 	}
@@ -32,7 +38,7 @@ class App extends React.Component {
 	newCard(cards, index) {
 		cards.push(
 			<Card
-			isFavorite={this.changeFavorite} 
+			isFavorite={this.changeFavorite.bind(this)} 
 			key={this.state.DATA[index].id} 
 			id ={this.state.DATA[index].id} 
 			
@@ -49,11 +55,10 @@ class App extends React.Component {
 			this.newEpisode(myObject, element, index)
 
 			if (this.state.view) {
-				this.state.DATA.forEach((e, i) => {
-					if (e.favorite) {
-						this.newCard(cards, i)
-					}
-				});
+				if (element.favorite) {
+					console.log(this.state.DATA);
+					this.newCard(cards, index)
+				}
 			} else {
 				this.newCard(cards, index)
 			}
