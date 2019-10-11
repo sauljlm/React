@@ -1,11 +1,8 @@
 import React from 'react';
 
 function Title(props) {
-
 	return (
-		<button onClick={() =>props.showCart()} className={"title"} >
-		{props.title}
-		</button>
+		<h2 className="title">{props.title}</h2>
 	);
 }
 

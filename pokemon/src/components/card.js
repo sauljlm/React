@@ -5,10 +5,9 @@ import Title from './title';
 class Card extends React.Component  {
 	constructor(props) {
 		super(props);
-		
+
 		this.state = {
-			iconActive: this.props.favorite,
-			showCart: false
+			iconActive: this.props.favorite
 		}
 	}
 
@@ -17,31 +16,29 @@ class Card extends React.Component  {
 		this.setState({iconActive: !this.state.iconActive});
 	}
 
-	async changeViewCart() {
-		await this.setState({ showCart: !this.state.showCart });
-	}
-
 	newcartInfo() {
 		return (
 			<div className='cart-info'>
-				<p>hola</p>
+				<div className='left-column'>
+					<Image url={this.props.img} className="image" />
+				</div>
+				<div className='right-column'>
+					<Title title={this.props.title} className="title" />
+				</div>
 			</div>
 		);
 	}
 
 	newcart() {
 		return (
-			<div className='cart'>
+			<div onClick={() => this.props.showCart()}  className='cart'>
 				<Title 
-					showCart={() => this.changeViewCart()} 
 					title={this.props.title} 
-					className="title">
-				</Title>
+					className="title" />
 				<button
 					className={this.state.iconActive ? 'cart__favorite cart__favorite--active' : 'cart__favorite'} 
-					onClick={()=>this.setFavorite(this.props.id)}>
-				</button>
-				<Image url={this.props.img} className="image"></Image>
+					onClick={()=>this.setFavorite(this.props.id)} />
+				<Image url={this.props.img} className="image" />
 			</div>
 		);
 	}

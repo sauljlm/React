@@ -7,7 +7,8 @@ class App extends React.Component {
 		this.state = {
 			showFavorites: false,
 			data: JSON.parse(localStorage.getItem('data')),
-			DATA: []
+			DATA: [],
+			showCart: false
 		}
 	}
 
@@ -37,18 +38,9 @@ class App extends React.Component {
 		this.state.DATA.push(myObject);
 	}
 
-	newCard(cards, index) {
-		cards.push(
-			<Card
-			isFavorite={this.changeFavorite.bind(this)} 
-			key={this.state.DATA[index].id} 
-			id ={this.state.DATA[index].id} 
-			favorite={this.state.DATA[index].favorite}
-			
-			img={this.state.DATA[index].img} 
-			title={this.state.DATA[index].title} 
-			paragraph={this.state.DATA[index].text}/>
-		);
+	async changeViewCart() {
+		console.log('hola mundo');
+		await this.setState({ showCart: !this.state.showCart });
 	}
 
 	getElements() {
@@ -68,6 +60,21 @@ class App extends React.Component {
 		});
 
 		return cards;
+	}
+
+	newCard(cards, index) {
+		cards.push(
+			<Card
+			showCart={this.changeViewCart.bind(this)} 
+			isFavorite={this.changeFavorite.bind(this)}
+			key={this.state.DATA[index].id} 
+			id ={this.state.DATA[index].id} 
+			favorite={this.state.DATA[index].favorite}
+			
+			img={this.state.DATA[index].img} 
+			title={this.state.DATA[index].title} 
+			paragraph={this.state.DATA[index].text}/>
+		);
 	}
 
 	render() {
