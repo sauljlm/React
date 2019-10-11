@@ -54,10 +54,10 @@ class App extends React.Component {
 	getElements() {
 		let cards = [];
 		let myObject = {};
-		this.state.data.cards.forEach((element, index) => {
+		this.state.data.cards.map((element, index) => {
 			this.newEpisode(myObject, element, index)
 		});
-		this.state.DATA.forEach((element, index) => {
+		this.state.DATA.map((element, index) => {
 			if (this.state.showFavorites) {
 				if (element.favorite) {
 					this.newCard(cards, index)
@@ -69,7 +69,7 @@ class App extends React.Component {
 
 		return cards;
 	}
-	
+
 	render() {
 		const cards = this.getElements();
 
