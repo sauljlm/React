@@ -39,7 +39,6 @@ class App extends React.Component {
 	}
 
 	async changeViewCart() {
-		console.log('hola mundo');
 		await this.setState({ showCart: !this.state.showCart });
 	}
 
