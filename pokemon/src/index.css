@@ -9,7 +9,7 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  monospace;
 }
 
 h1 {
@@ -29,10 +29,15 @@ h1 {
   margin: 50px auto;
 }
 
-.count {
+.count-carts {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 25px;
+}
+
+.count-cart {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .cart {
@@ -75,6 +80,6 @@ h1 {
   text-align: left;
 }
 
-.title:hover {
-  text-decoration: underline;
-}
+/* .close-card-info {
+  border: none;
+} */

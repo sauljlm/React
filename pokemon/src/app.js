@@ -1,20 +1,32 @@
 import React from 'react';
 import Card from './components/card';
+import CardInfo from './components/cardInfo';
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			showFavorites: false,
+			showCart: false,
 			data: JSON.parse(localStorage.getItem('data')),
-			DATA: [],
-			showCart: false
+			cardSelected: 0
 		}
+		this.favorites = [];
 	}
 
-	changeFavorite(index) {
-		this.setState(() => {
-			this.state.DATA[index].favorite = !this.state.DATA[index].favorite
+	changeFavorite(id) {
+		let same = false;
+		this.favorites.map((element, index) => {
+			if (element.id === id) {
+				this.favorites.splice(index, 1)
+				same = true;
+			}
+		});
+
+		this.state.data.cards.map(card => {
+			if(card.id === id && same === false) {
+				this.favorites.push(card);
+			}
 		});
 	}
 
@@ -22,68 +34,83 @@ class App extends React.Component {
 		this.setState({showFavorites : !this.state.showFavorites});
 	}
 
-	emptyData() {
-		this.setState({DATA: []});
-	}
-
-	newEpisode(myObject, element, index) {
-		this.emptyData.bind(this);
-		myObject = {
-			id: index,
-			favorite: false,
-			img: element.imageUrl,
-			title: element.name,
-			text: element.summary
-		};
-		this.state.DATA.push(myObject);
-	}
-
-	async changeViewCart() {
+	async changeViewCart(id) {
 		await this.setState({ showCart: !this.state.showCart });
+		this.setState({cardSelected: id});
 	}
 
 	getElements() {
 		let cards = [];
-		let myObject = {};
-		this.state.data.cards.map((element, index) => {
-			this.newEpisode(myObject, element, index)
-		});
-		this.state.DATA.map((element, index) => {
-			if (this.state.showFavorites) {
-				if (element.favorite) {
-					this.newCard(cards, index)
-				}
-			} else {
-				this.newCard(cards, index)
-			}
-		});
+		if (this.state.showFavorites) {
+			this.favorites.map((element) => {
+				this.newCard(element, cards)
+			});
+		} else {
+			this.state.data.cards.map((element) => {
+				this.newCard(element, cards)
+			});
+		}
 
 		return cards;
 	}
 
-	newCard(cards, index) {
+	getCardSelected() {
+		let cardSelected = this.state.data.cards.filter(card => card.id === this.state.cardSelected );
+		return cardSelected;
+	}
+
+	newCard(element, cards) {
 		cards.push(
 			<Card
 			showCart={this.changeViewCart.bind(this)} 
 			isFavorite={this.changeFavorite.bind(this)}
-			key={this.state.DATA[index].id} 
-			id ={this.state.DATA[index].id} 
-			favorite={this.state.DATA[index].favorite}
-			
-			img={this.state.DATA[index].img} 
-			title={this.state.DATA[index].title} 
-			paragraph={this.state.DATA[index].text}/>
+			key={element.id}
+			id ={element.id}
+
+			img={element.imageUrl} 
+			title={element.name}/>
 		);
 	}
 
+	newCardInfo() {
+		const card = this.getCardSelected();
+		
+		if(card.length) {
+			var component = (
+				<CardInfo
+				showCart={this.changeViewCart.bind(this)} 
+				isFavorite={this.changeFavorite.bind(this)}
+				key={card[0].id}
+				id ={card[0].id}
+		
+				img={card[0].imageUrl} 
+				title={card[0].name}
+				rarity={card[0].rarity}
+				subType={`${card[0].supertype}-${card[0].subtype}`}
+				attacks={card[0].attacks}
+				/>
+			)
+		}
+
+		return ( 
+			component
+		)
+	}
+
 	render() {
-		const cards = this.getElements();
+		let component = null;
+
+		if(this.state.showCart) {
+			component = this.newCardInfo();
+		} else {
+			component =  this.getElements();
+		}
 
 		return (
 			<div className="countain">
 				<h1>Pokemon</h1>
 				<button onClick={this.btnAction.bind(this)} className="btn-show">favorites</button>
-				<div className="count">{cards}</div>
+				<div className={this.state.showCart ? 'count-cart' : 'count-carts'} >{component}</div>
 			</div>
 		);
 	}

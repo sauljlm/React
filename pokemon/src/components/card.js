@@ -11,49 +11,21 @@ class Card extends React.Component  {
 		}
 	}
 
-	setFavorite(index) {
-		this.props.isFavorite(index);
+	setFavorite(id) {
+		this.props.isFavorite(id);
 		this.setState({iconActive: !this.state.iconActive});
 	}
 
-	newcartInfo() {
+	render() {
 		return (
-			<div className='cart-info'>
-				<div className='left-column'>
-					<Image url={this.props.img} className="image" />
-				</div>
-				<div className='right-column'>
-					<Title title={this.props.title} className="title" />
-				</div>
-			</div>
-		);
-	}
-
-	newcart() {
-		return (
-			<div onClick={() => this.props.showCart()}  className='cart'>
-				<Title 
-					title={this.props.title} 
-					className="title" />
+			<div className='cart'>
+				<Title title={this.props.title} className="title" />
 				<button
 					className={this.state.iconActive ? 'cart__favorite cart__favorite--active' : 'cart__favorite'} 
 					onClick={()=>this.setFavorite(this.props.id)} />
-				<Image url={this.props.img} className="image" />
+				<Image showCart={this.props.showCart.bind(this)} id={this.props.id} url={this.props.img} className="image" />
 			</div>
 		);
-	}
-
-	render() {
-		let component = null;
-
-		if (this.state.showCart === true) {
-			component =  this.newcartInfo();
-		} else {
-			component = this.newcart();
-		}
-		return (
-			component
-		)
 	}
 }
 
