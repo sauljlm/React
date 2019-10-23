@@ -2,7 +2,7 @@ import React from 'react';
 
 function Paragraph(props) {
 	return (
-		<p className="paragraph">{props.text}</p>
+		<p className={props.className}>{props.text}</p>
 	);
 }
 

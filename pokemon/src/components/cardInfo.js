@@ -23,6 +23,7 @@ class CardInfo extends React.Component  {
 		let attacks = [];
 
 		if(attacksData) {
+			attacks.push(<Paragraph text={"Attacks"} className="attaks__title" />);
 			attacksData.map((element, index) => {
 				attacks.push(
 					<Attacks
@@ -43,8 +44,8 @@ class CardInfo extends React.Component  {
 					<button className="close-card-info" onClick={()=>this.props.showCart()}>close</button>
 					<Title title={this.props.title} className="left-column__title" />
           <Paragraph text={this.props.subType} className="left-column__subType" />
-          <div >{attacks}</div>
           <Paragraph text={this.props.rarity} className="left-column__rarity" />
+          <div className="attacks">{attacks}</div>
 				</div>
 			</div>
 		);
