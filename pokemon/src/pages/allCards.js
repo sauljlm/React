@@ -13,8 +13,9 @@ class AllCards extends React.Component {
 		cards.push(
 			<Card
         key={element.id}
-        id ={element.id}
+        id ={element.id} 
 
+				data={element}
         img={element.imageUrl} 
         title={element.name}
       />
@@ -34,7 +35,7 @@ class AllCards extends React.Component {
 		const component =  this.getElements();
 
 		return (
-			<div className="countain">{component}</div>
+			<div className="countain count-carts">{component}</div>
 		);
 	}
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import AllCards from './pages/allCards';
-import CardInfo from './pages/cardInfo';
+import Card from './pages/cardInfo';
 import NotFound from './pages/error';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -16,7 +16,7 @@ class App extends React.Component {
 			<BrowserRouter>
 				<Switch>
 					<Route path={"/"} component={AllCards} exact/>
-					<Route path={"/cardInfo"} component={CardInfo}/>
+					<Route path={"/cardInfo"} component={Card}/>
 					<Route component={NotFound}/>
 				</Switch>
 			</BrowserRouter>
